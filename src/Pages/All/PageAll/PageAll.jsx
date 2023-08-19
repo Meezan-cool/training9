@@ -157,7 +157,7 @@ const PageAll = () => {
     <div className='header'>
         {/* Return Logo */}
         <div className='return_logo'>
-        <img src={Returnlogo} alt="" onClick={()=>navigate('/main')} />
+        <img src={Returnlogo} alt="" onClick={()=>navigate('/')} />
 
       </div>
       {/* Head Part  */}
