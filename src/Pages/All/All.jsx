@@ -1,18 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import ClipboardSvg from '../../Imageslogo/clipboard (1) 1 (1).svg';
+import { useNavigate } from 'react-router-dom';
 const All = () => {
+  const navigate=useNavigate()
   return (
-    <Link to='/all'>
-    <div className='card card1'>
-     {/* <i class="fa-solid fa-table-list"></i> */}
+    <div className='card card1' onClick={()=>navigate('/all')}>
      <img src={ClipboardSvg} alt="" />
       <div className="card_detail">
         <h2>All</h2>
         <p>23 Tasks</p>
       </div>
     </div>
-     </Link>
   )
 }
 

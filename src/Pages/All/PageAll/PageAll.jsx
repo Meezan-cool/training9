@@ -1,61 +1,11 @@
-// import React from 'react'
-// import ClipboardSvg from '../../../Imageslogo/clipboard (1) 1 (1).svg';
-// import "./PageAll.css"
-// import { useNavigate } from "react-router-dom";
-// const PageAll = () => {
-//   const navigate = useNavigate();
-//   const goBack=()=>{
-//     navigate('/main')
-//   }
-
-//   let showdate=new Date();
-//   let dt=showdate.toDateString().slice(0,4);
-//   return (
-//     <div className='PageAll_container'>
-//       <div className="first_head_container" >
-//         <div className='first_head'>
-//            <i class="fa-solid fa-chevron-left" onClick={goBack} ></i>
-//           <i class="fa-solid fa-ellipsis-vertical"></i>
-//         </div>
-//       </div>
-
-//       <div className='logo_details'>
-//         <div className='logo_cont'>
-//         <img src={ClipboardSvg} alt="" />
-//         </div>
-//         <div className='logo_per'>
-//           <h2>All</h2>
-//           <h6>23 Task</h6>
-//         </div>
-//       </div>
-
-
-//       <div className='lower_PageAll'>
-//             <div className='late_detail'>
-//               <div>Late</div>
-//               <div>{dt}</div>
-//             </div>
-//       </div>
-
-
-//     </div>
-//   )
-// }
-
-// export default PageAll
 import React from 'react'
-// import { Link } from 'react-router-dom';
-import Blur from '../../../Imageslogo/blur 1.svg'
-import { useNavigate } from "react-router-dom";
-import Delete from '../../../Imageslogo/delete 1.svg'
-import Check from '../../../Imageslogo/checked 1.svg'
 import ClipboardSvg from '../../../Imageslogo/clipboard (1) 1 (1).svg';
 import Returnlogo from '../../../Imageslogo/return 1.svg'
-import Pluslogo from "../../../Imageslogo/plus 1.svg"
 import "./PageAll.css"
+import CardHeader from '../../../Components/Header/CardHeader/CardHeader';
+import BodyDetail from '../../../Components/BodyDetail/BodyDetail';
+import CardFooter from '../../../Components/Footer/CardFooter/CardFooter';
 const PageAll = () => {
-  const navigate = useNavigate();
-
   const data = [
     {
       task: "Buy groceries for the week and prepare meals for the family.",
@@ -137,7 +87,7 @@ const PageAll = () => {
     },
     {
       task: "Research and try a new recipe for a healthy and nutritious breakfast.",
-    },{
+    }, {
       task: "Plan a weekend hiking trip with friends and research nearby trails.",
     },
     {
@@ -150,52 +100,15 @@ const PageAll = () => {
       task: "Write a thank-you note to someone who helped you recently.",
     },
   ];
-  
   return (
-    // Main Container
+    // Main Screen
     <div className='All_container'>
-    <div className='header'>
-        {/* Return Logo */}
-        <div className='return_logo'>
-        <img src={Returnlogo} alt="" onClick={()=>navigate('/')} />
-
-      </div>
-      {/* Head Part  */}
-      <div className='Head_detailss'>
-        <div className='position_head'>
-          ALL TASK
-          <img src={ClipboardSvg} alt="" />
-        </div>
-      </div>
-
-    </div>
+      {/* Header */}
+      <CardHeader route='/' returnlogo={Returnlogo} cardlogo={ClipboardSvg} title="ALL TASK" />
       {/* Body */}
-      <div className='Body_detail'>
-              <div className='sub_Body'>
-                {data.map((item,id)=>{
-                return(
-                     <div key={id} className='map_cont'>
-                      <div><img src={Blur} alt="" /></div>
-                     <div className='content'>
-                     {item.task.slice(0,70)}...
-                     </div>
-                     <div className='action_buttons'>
-                     <div><img src={Check} alt="" /></div>
-                     <div><img src={Delete} alt="" /></div>
-                     </div>
-                     </div>
-                )
-                })
-                }
-              </div>
-      </div>
-
+      <BodyDetail data={data} />
       {/* Footer  */}
-      <div className='footer_pageall'>
-        <div className='plus_cont' onClick={()=>navigate('/task')}>
-          <img src={Pluslogo} alt="" />
-        </div>
-      </div>
+      <CardFooter />
     </div>
   )
 }

@@ -1,0 +1,36 @@
+
+/* return Logo */
+.return_logo {
+    position: relative;
+    top: 11px;
+    left: 13px;
+}
+.return_logo img{
+    width:34px;
+    height:36px;
+}
+
+.header{
+    padding: 3px;
+    position: sticky;
+    top: 0;
+}
+/* Head heading */
+.position_head img{
+    position: relative;
+    top: 5px;
+    left: 15px;
+}
+.Head_detailss{
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2196F3;
+    font-family: Poppins;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 54px;
+    letter-spacing: 0em;
+    text-align: left;
+}
