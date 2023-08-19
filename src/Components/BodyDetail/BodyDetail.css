@@ -31,14 +31,10 @@
 }
 
 .map_cont{
-    
   padding-top: 10px;
   display: flex;
-  /* flex-direction: column; */
-  gap: .5rem;
-  /* width: 92vw; */
-  width: 360px;
-  /* flex-direction: column; */
+  gap: .7rem;
+  width: 335px;
 }
 .map_cont .content {
     word-break: break-all;
@@ -46,9 +42,14 @@
 .action_buttons{
 display: flex;
 gap: .3rem;
+position: relative;
+top: 2px;
+}
+.selected{
+    text-decoration: line-through;
 }
 @media(max-width:360px){
     .map_cont{
-        width: 330px;
+        width: 310px;
     }
 }
