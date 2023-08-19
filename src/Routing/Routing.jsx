@@ -10,7 +10,7 @@ const Routing = () => {
     <Router>
         
        <Routes>
-        <Route exact path='/main' element={<Main/>}/>
+        <Route exact path='/' element={<Main/>}/>
         <Route  path='/all' element={<PageAll/>}/>
         <Route  path='/art' element={<PageArt/>}/>
         <Route  path='/task' element={<Task/>}/>
