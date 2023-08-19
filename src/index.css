@@ -1,0 +1,46 @@
+ *{
+  margin: 0;
+  box-sizing: border-box;
+ }
+ /* Main Body (Display,height) */
+ .MBody{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  /* background: rgb(244, 241, 241); */
+  background: #ccc;
+  gap: 5rem;
+ }
+ /* Main Body h1 */
+ .MBody h1{
+   font-size: 3rem;
+   font-family: cursive;
+ }
+ /* Main Body form */
+ .MBody form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+ }
+ /* Main Body form */
+ .MBody form input{
+  width: 40vh;
+  height: 5vh;
+  padding: 10px;
+  background: aliceblue;
+  border-radius: 5px;
+  border: none;
+ }
+ /* Main Body form button */
+ .MBody form button{
+  width: 40vh;
+  padding: 10px;
+  color: aliceblue;
+  background: rgb(13, 121, 216);
+  border-radius: 5px;
+  border: none;
+ }
