@@ -8,7 +8,7 @@ import Task from '../Components/Task/Task';
 const Routing = () => {
   return (
     <Router>
-        
+        <Main/>
        <Routes>
         <Route exact path='/' element={<Main/>}/>
         <Route  path='/all' element={<PageAll/>}/>
