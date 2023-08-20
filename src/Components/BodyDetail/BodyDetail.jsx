@@ -8,6 +8,8 @@ const BodyDetail = ({ category }) => {
   const [showTasks, setShowTasks] = useState([]);
   const [data, setData] = useState([]);
 const[start,setStart]=useState(false)
+const[showMessage,setShowMessage]=useState('') 
+
   useEffect(() => {
     const localStorageItem = localStorage.getItem(category);
    
@@ -46,22 +48,40 @@ const[start,setStart]=useState(false)
  
 
   // To Check the task
+  // const handleTaskClick = (id) => {
+  //   if (selectedTasks.includes(id)) {
+  //     setSelectedTasks(selectedTasks.filter(taskId => taskId !== id));
+  //   } else {
+  //     setSelectedTasks([...selectedTasks, id]);
+  //   }
+  // };
   const handleTaskClick = (id) => {
+    let updatedSelectedTasks;
     if (selectedTasks.includes(id)) {
-      setSelectedTasks(selectedTasks.filter(taskId => taskId !== id));
+      updatedSelectedTasks = selectedTasks.filter(taskId => taskId !== id);
     } else {
-      setSelectedTasks([...selectedTasks, id]);
-
+      updatedSelectedTasks = [...selectedTasks, id];
     }
-   
+  
+    setSelectedTasks(updatedSelectedTasks);
+    localStorage.setItem('selectedTasks', JSON.stringify(updatedSelectedTasks));
   };
-
+  useEffect(() => {
+    const storedSelectedTasks = JSON.parse(localStorage.getItem('selectedTasks')) || [];
+    setSelectedTasks(storedSelectedTasks);
+  }, []);
   // To Delete the task
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((item, idx) => idx !== id);
     setData(updatedData);
     setStart(!start)
     localStorage.setItem(category, JSON.stringify(updatedData));
+    if(category==='All'){
+       setShowMessage('Failed to delete task from here.')
+      setTimeout(() => {
+        setShowMessage('');
+    }, 500);
+    }
   }
   // To expand the task when Click
   const handleTaskShow = (id) => {
@@ -99,6 +119,7 @@ const[start,setStart]=useState(false)
           );
         })}
       </div>
+      {showMessage && <div className='failed_message'>{showMessage}</div>}
     </div>
     
   );
@@ -106,16 +127,3 @@ const[start,setStart]=useState(false)
 
 export default BodyDetail;
 
-
- // function deleteItemFromAllKeys(item) {
-  //   const keys = ['Work', 'Study', 'Travel', 'Shopping', 'Home'];
-    
-  //   keys.forEach(key => {
-  //     const storedData = localStorage.getItem(key);
-  //     if (storedData) {
-  //       const parsedData = JSON.parse(storedData);
-  //       const updatedData = parsedData.filter(entry => entry.id !== item.id);
-  //       localStorage.setItem(key, JSON.stringify(updatedData));
-  //     }
-  //   });
-  // }

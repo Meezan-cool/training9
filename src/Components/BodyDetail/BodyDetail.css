@@ -31,10 +31,11 @@
 }
 
 .map_cont{
-  padding-top: 10px;
-  display: flex;
-  gap: .7rem;
-  width: 335px;
+    padding-top: 10px;
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 340px;
 }
 .map_cont .content {
     min-width: 265px;
@@ -46,8 +47,28 @@ gap: .3rem;
 position: relative;
 top: 2px;
 }
+.action_buttons img{
+    width: 22px;
+    height: 22px;
+}
 .selected{
     text-decoration: line-through;
+}
+.failed_message{
+    position: absolute;
+    z-index: 10;
+    bottom: 15%;
+    padding: 10px 30px ;
+    border: none;
+    border-radius: 30px;
+    color: #FFFFFF;
+    background: #e63e3e;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    font-family: Poppins;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
 }
 @media(max-width:360px){
     .map_cont{
