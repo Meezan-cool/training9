@@ -5,63 +5,63 @@ import House from '../../../Imageslogo/house 1.svg'
 import BodyDetail from '../../../Components/BodyDetail/BodyDetail'
 import CardFooter from '../../../Components/Footer/CardFooter/CardFooter'
 const PageHome = () => {
-  const data = [
-    {
-      task: "Buy groceries for the week and prepare meals for the family.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-     {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-     {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-    {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
-     {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    }, {
-      task: "Stream a new movie or TV show on a popular streaming platform.",
-    },
+  // const data = [
+  //   {
+  //     task: "Buy groceries for the week and prepare meals for the family.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //    {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //    {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //   {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
+  //    {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   }, {
+  //     task: "Stream a new movie or TV show on a popular streaming platform.",
+  //   },
 
-  ]
+  // ]
   return (
     // Main Screen
     <div className='All_container'>
       {/* Header */}
       <CardHeader route='/' returnlogo={Returnlogo} cardlogo={House} title="HOME"/>
       {/* Body */}
-      <BodyDetail data={data}/>
+      <BodyDetail category='Home'/>
       {/* Footer */}
       <CardFooter/>
     </div>

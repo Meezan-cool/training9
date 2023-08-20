@@ -1,6 +1,8 @@
 import React from 'react'
 import ClipboardSvg from '../../Imageslogo/clipboard (1) 1 (1).svg';
 import { useNavigate } from 'react-router-dom';
+
+
 const All = () => {
   const navigate=useNavigate()
   return (
@@ -8,7 +10,7 @@ const All = () => {
      <img src={ClipboardSvg} alt="" />
       <div className="card_detail">
         <h2>All</h2>
-        <p>23 Tasks</p>
+        <p> Tasks</p>
       </div>
     </div>
   )

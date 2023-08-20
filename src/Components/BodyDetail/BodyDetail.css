@@ -37,6 +37,7 @@
   width: 335px;
 }
 .map_cont .content {
+    min-width: 265px;
     word-break: break-all;
 }
 .action_buttons{
