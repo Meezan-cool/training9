@@ -19,7 +19,7 @@ const Task = () => {
         setSelectedItem(option);
         setShowDropdown(false);
     };
-
+    const navigate = useNavigate()
     const handleCreateClick = () => {
         if (!taskText || !selectedItem) {
             if (!selectedItem) {
@@ -33,8 +33,10 @@ const Task = () => {
             setCategoryMessage('');
             setErrorMessage('');
             setSuccessMessage('Task added successfully.');
+            const smallcategory=selectedItem.toLowerCase();
+            navigate(`/${smallcategory}`)
             // Save the task to local storage with its category as the key
-            const existingTasks = JSON.parse(localStorage.getItem(selectedItem)) || [];
+            const existingTasks = JSON.parse(localStorage.getItem(selectedItem),('All')) || [];
             const newTask = { task: taskText };
             existingTasks.push(newTask);
             localStorage.setItem(selectedItem, JSON.stringify(existingTasks));
@@ -45,7 +47,7 @@ const Task = () => {
             }, 2000);
         }
     };
-    const navigate = useNavigate()
+    
     return (
         <div className='task_container'>
 

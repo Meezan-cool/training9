@@ -7,9 +7,8 @@ const BodyDetail = ({ category }) => {
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [showTasks, setShowTasks] = useState([]);
   const [data, setData] = useState([]);
-  // const [taskCount,setTaskCount]=useState(0)
 
-// To get item from local Storage
+
   useEffect(() => {
     const localStorageItem = localStorage.getItem(category);
    
@@ -18,7 +17,31 @@ const BodyDetail = ({ category }) => {
       setData(parsedData);
      
     }
-  }, [category]);
+    if (category !== 'All' || category=== 'All') {
+      // Array to store combined data
+      let combinedData = [];
+     
+      // List of keys to retrieve data from
+      const keysToRetrieve = ['Work','Study', 'Travel', 'Shopping', 'Home'];
+    
+      // Loop through keys and retrieve data
+      keysToRetrieve.forEach(key => {
+        const storedData = localStorage.getItem(key);
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          combinedData = combinedData.concat(parsedData);
+        }
+      });
+      // const smallcategory=category.toLowerCase()
+      
+    
+      // Store the combined data under the 'All' key
+      localStorage.setItem('All', JSON.stringify(combinedData));
+    }
+  }, [data]);
+
+
+ 
 
   // To Check the task
   const handleTaskClick = (id) => {
@@ -27,15 +50,15 @@ const BodyDetail = ({ category }) => {
     } else {
       setSelectedTasks([...selectedTasks, id]);
     }
+   
   };
 
   // To Delete the task
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((item, idx) => idx !== id);
     setData(updatedData);
-    
     localStorage.setItem(category, JSON.stringify(updatedData));
-   
+  
   }
   // To expand the task when Click
   const handleTaskShow = (id) => {
@@ -49,7 +72,6 @@ const BodyDetail = ({ category }) => {
     return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
   };
   
-  // console.log(taskCount)
   return (
     
     <div className='Body_detail'>
@@ -79,3 +101,17 @@ const BodyDetail = ({ category }) => {
 };
 
 export default BodyDetail;
+
+
+ // function deleteItemFromAllKeys(item) {
+  //   const keys = ['Work', 'Study', 'Travel', 'Shopping', 'Home'];
+    
+  //   keys.forEach(key => {
+  //     const storedData = localStorage.getItem(key);
+  //     if (storedData) {
+  //       const parsedData = JSON.parse(storedData);
+  //       const updatedData = parsedData.filter(entry => entry.id !== item.id);
+  //       localStorage.setItem(key, JSON.stringify(updatedData));
+  //     }
+  //   });
+  // }
