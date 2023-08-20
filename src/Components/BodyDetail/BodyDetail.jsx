@@ -54,8 +54,7 @@ const BodyDetail = ({ category }) => {
     
     <div className='Body_detail'>
       <div className='sub_Body'>
-        
-        {data.map((item, id) => {
+      {data.map((item, id) => {
           const isSelected = selectedTasks.includes(id);
           const isSelected1 = showTasks.includes(id);
           return (
