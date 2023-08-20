@@ -7,15 +7,13 @@ const BodyDetail = ({ category }) => {
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [showTasks, setShowTasks] = useState([]);
   const [data, setData] = useState([]);
-
-
+const[start,setStart]=useState(false)
   useEffect(() => {
     const localStorageItem = localStorage.getItem(category);
    
     if (localStorageItem) {
       const parsedData = JSON.parse(localStorageItem);
       setData(parsedData);
-     
     }
     if (category !== 'All' || category=== 'All') {
       // Array to store combined data
@@ -37,8 +35,12 @@ const BodyDetail = ({ category }) => {
     
       // Store the combined data under the 'All' key
       localStorage.setItem('All', JSON.stringify(combinedData));
+      setStart(true)
+
     }
-  }, [data]);
+    setStart(true)
+
+  }, [start,category]);
 
 
  
@@ -49,6 +51,7 @@ const BodyDetail = ({ category }) => {
       setSelectedTasks(selectedTasks.filter(taskId => taskId !== id));
     } else {
       setSelectedTasks([...selectedTasks, id]);
+
     }
    
   };
@@ -57,13 +60,14 @@ const BodyDetail = ({ category }) => {
   const handleDeleteTask = (id) => {
     const updatedData = data.filter((item, idx) => idx !== id);
     setData(updatedData);
+    setStart(!start)
     localStorage.setItem(category, JSON.stringify(updatedData));
-  
   }
   // To expand the task when Click
   const handleTaskShow = (id) => {
     if (showTasks.includes(id)) {
       setShowTasks(showTasks.filter(taskId => taskId !== id));
+
     } else {
       setShowTasks([...showTasks, id]);
     }
