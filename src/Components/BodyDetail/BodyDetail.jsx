@@ -55,6 +55,7 @@ const[showMessage,setShowMessage]=useState('')
   //     setSelectedTasks([...selectedTasks, id]);
   //   }
   // };
+
   const handleTaskClick = (id) => {
     let updatedSelectedTasks;
     if (selectedTasks.includes(id)) {
@@ -118,6 +119,7 @@ const[showMessage,setShowMessage]=useState('')
             </div>
           );
         })}
+        
       </div>
       {showMessage && <div className='failed_message'>{showMessage}</div>}
     </div>

@@ -72,6 +72,6 @@ top: 2px;
 }
 @media(max-width:360px){
     .map_cont{
-        width: 310px;
+        /* width: 310px; */
     }
 }
