@@ -17,7 +17,7 @@ const PageAll = () => {
       {/* Header */}
       <CardHeader route='/'  returnlogo={Returnlogo} cardlogo={ClipboardSvg} title="ALL TASK" />
       {/* Body */}
-      <BodyDetail  category='All'  />
+      <BodyDetail  category='All'   />
       {/* Footer  */}
       <CardFooter />
     </div>
