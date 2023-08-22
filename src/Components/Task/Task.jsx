@@ -63,16 +63,16 @@ const Task = () => {
             setCategoryMessage('');
             setErrorMessage('');
             setSuccessMessage('Task added successfully.');
-            // const smallcategory = selectedItem.toLowerCase();
-            // navigate(`/${smallcategory}`)
             const existingTasks = JSON.parse(localStorage.getItem(selectedItem), ('All')) || [];
             const newTask = { task: taskText };
             existingTasks.push(newTask);
             localStorage.setItem(selectedItem, JSON.stringify(existingTasks));
             setTaskText('');
             setTimeout(() => {
-                setSuccessMessage('');
-            }, 2000);
+            const smallcategory = selectedItem.toLowerCase();
+            navigate(`/${smallcategory}`)
+            setSuccessMessage('');
+            }, 1000);
         }
     };
 

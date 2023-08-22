@@ -17,7 +17,7 @@ const BodyDetail = ({ category }) => {
     if (localStorageItem) {
       setData(JSON.parse(localStorageItem));
     }
-    
+
     const keysToRetrieve = ['Work', 'Study', 'Travel', 'Shopping', 'Home'];
     const combinedData = keysToRetrieve.reduce((acc, key) => {
       const storedData = localStorage.getItem(key);
@@ -28,10 +28,10 @@ const BodyDetail = ({ category }) => {
     }, []);
 
     localStorage.setItem('All', JSON.stringify(combinedData));
-    localStorage.setItem('Category',category)
+    localStorage.setItem('Category', category)
     setStart(true);
     // setCategory1(category);
-  }, [start,category]);
+  }, [start, category]);
 
   // Select chat line through
   const handleTaskClick = (id) => {
@@ -57,6 +57,16 @@ const BodyDetail = ({ category }) => {
       setShowMessage('Successfully Deleted');
       setTimeout(() => setShowMessage(''), 1000);
     }
+    const select=localStorage.getItem(`${category}_select`)
+    console.log(select)
+    console.log(id)
+    // const foundselect = select.find(sel => JSON.stringify(sel) === JSON.stringify(id));
+   const idx=[id];
+   console.log(idx)
+    if(idx===select){
+      const updateSelectTasks = select.filter(idd => (idd) !== ([id]));
+      console.log(updateSelectTasks)
+    }
   };
 
   // Expand the task 
@@ -68,28 +78,34 @@ const BodyDetail = ({ category }) => {
   // TO Delete the task from All
   const handleTask = (taskToDelete) => {
     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
-  
-     categories.forEach(category => {
-     const localitem = localStorage.getItem(category);
-     const tasks = JSON.parse(localitem) || [];
-     console.log(tasks)
+
+    categories.forEach(category => {
+      const localitem = localStorage.getItem(category);
+      const tasks = JSON.parse(localitem) || [];
+      console.log(tasks)
 
       const foundTask = tasks.find(task => JSON.stringify(task) === JSON.stringify(taskToDelete));
       // const updatedTasks = tasks.filter(task => task.task !== taskToDelete);
-    
+
       if (foundTask) {
         console.log(category)
-       console.log("Found:", foundTask);
-       const updatefoundTasks = tasks.filter(task => JSON.stringify(task) !== JSON.stringify(foundTask));
-       console.log(updatefoundTasks)
-    localStorage.setItem(category,JSON.stringify(updatefoundTasks))
-     } else {
-       console.log("Task not found.");
-     }
+        console.log("Found:", foundTask);
+        const updatefoundTasks = tasks.filter(task => JSON.stringify(task) !== JSON.stringify(foundTask));
+        console.log(updatefoundTasks)
+        localStorage.setItem(category, JSON.stringify(updatefoundTasks))
+      } else {
+        console.log("Task not found.");
+      }
     });
-  
+
   };
-  
+
+  const handleShow = (item, id) => {
+    // console.log(item)
+    console.log(id)
+  const select=localStorage.getItem(`${category}_select`)
+  console.log(select)
+  }
 
   return (
     <div className='Body_detail'>
@@ -100,12 +116,12 @@ const BodyDetail = ({ category }) => {
           return (
             <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
               <div><img src={Blur} alt="" /></div>
-              <div className='content' onClick={() => {handleTaskShow(id);}}>
+              <div className='content' onClick={() => { handleTaskShow(id); handleShow(item, id) }}>
                 {isSelected1 ? item.task : truncateText(item.task, 60)}
               </div>
               <div className='action_buttons'>
                 <div><img src={Check} alt="" onClick={() => handleTaskClick(id)} /></div>
-                <div><img src={Delete} alt="" onClick={() => {handleDeleteTask(id);handleTask(item)}} /></div>
+                <div><img src={Delete} alt="" onClick={() => { handleDeleteTask(id); handleTask(item) }} /></div>
               </div>
             </div>
           );
