@@ -4,6 +4,7 @@
     left: 0;
     height: 100vh;
     width: 100% ;
+   /* width: 375px; */
     background-color: #2196F3;
 }
 
@@ -137,6 +138,8 @@
     top: 28%;
 }
 .input_header{
+    display: flex;
+    align-items: center;
     position: relative;
     bottom: 0;
     font-family: Poppins;
@@ -150,6 +153,7 @@
     height: 90%;
     display: flex;
     align-items: flex-start;
+    position: relative;
 }
 .input_div textarea{
     resize: none;
@@ -168,6 +172,7 @@
     font-size: 20px;
     line-height: 24px;
     color: #616161;
+    /* position: relative; */
 }
 .error_message1{
     width: 85%;
@@ -221,4 +226,23 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
+}
+.input_header img{
+    position: absolute;
+    width: 23px;
+    right: 0;
+    top: 1px;
+    color: #616161;
+}
+/* .emoji_container {
+    position: absolute;
+    left: -15px;
+    height: 300px;
+    width: 100%;
+} */
+.EmojiPickerReact {
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute !important;
+    left: 0;
 }

@@ -3,13 +3,15 @@ import "./BodyDetail.css";
 import Blur from '../../Imageslogo/blur 1.svg';
 import Delete from '../../Imageslogo/delete 1.svg';
 import Check from '../../Imageslogo/checked 1.svg';
-
+// import { createContext} from 'react';
+// export   const GlobalData=createContext()
 const BodyDetail = ({ category }) => {
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [showTasks, setShowTasks] = useState([]);
   const [data, setData] = useState([]);
   const [start, setStart] = useState(false);
   const [showMessage, setShowMessage] = useState('');
+  // const [category1,setCategory1]=useState()
 //  const [newdata,setNewdata]=useState([])
 
   // useEffect for data adding refreshing
@@ -29,7 +31,9 @@ const BodyDetail = ({ category }) => {
     }, []);
 
     localStorage.setItem('All', JSON.stringify(combinedData));
+    localStorage.setItem('Category',category)
     setStart(true);
+    // setCategory1(category);
   }, [start,category]);
 
   // Select chat line through
@@ -53,8 +57,8 @@ const BodyDetail = ({ category }) => {
     setStart(!start);
     localStorage.setItem(category, JSON.stringify(updatedData));
     if (category === 'All') {
-      setShowMessage('Failed to delete task from here.');
-      setTimeout(() => setShowMessage(''), 500);
+      setShowMessage('Successfully Deleted');
+      setTimeout(() => setShowMessage(''), 1000);
     }
   };
 
@@ -70,6 +74,8 @@ const BodyDetail = ({ category }) => {
   //     console.log(id)
   //   }
   // };
+
+  // TO Delete the task from All
   const handleTask = (taskToDelete) => {
     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
   
@@ -79,7 +85,7 @@ const BodyDetail = ({ category }) => {
      console.log(tasks)
 
       const foundTask = tasks.find(task => JSON.stringify(task) === JSON.stringify(taskToDelete));
-      const updatedTasks = tasks.filter(task => task.task !== taskToDelete);
+      // const updatedTasks = tasks.filter(task => task.task !== taskToDelete);
     
       if (foundTask) {
         console.log(category)
@@ -96,6 +102,7 @@ const BodyDetail = ({ category }) => {
   
 
   return (
+    // <GlobalData.Provider value={{category1}}>
     <div className='Body_detail'>
       <div className='sub_Body'>
         {data.map((item, id) => {
@@ -115,8 +122,9 @@ const BodyDetail = ({ category }) => {
           );
         })}
       </div>
-      {showMessage && <div className='failed_message'>{showMessage}</div>}
+      {showMessage && <div className='success_message'>{showMessage}</div>}
     </div>
+    // </GlobalData.Provider>
   );
 };
 
