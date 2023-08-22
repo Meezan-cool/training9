@@ -3,18 +3,15 @@ import "./BodyDetail.css";
 import Blur from '../../Imageslogo/blur 1.svg';
 import Delete from '../../Imageslogo/delete 1.svg';
 import Check from '../../Imageslogo/checked 1.svg';
-// import { createContext} from 'react';
-// export   const GlobalData=createContext()
+
 const BodyDetail = ({ category }) => {
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [showTasks, setShowTasks] = useState([]);
   const [data, setData] = useState([]);
   const [start, setStart] = useState(false);
   const [showMessage, setShowMessage] = useState('');
-  // const [category1,setCategory1]=useState()
-//  const [newdata,setNewdata]=useState([])
 
-  // useEffect for data adding refreshing
+  // useEffect for added data 
   useEffect(() => {
     const localStorageItem = localStorage.getItem(category);
     if (localStorageItem) {
@@ -68,13 +65,6 @@ const BodyDetail = ({ category }) => {
   };
   const truncateText = (text, maxLength) => text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 
-
-  // const handleTask = (id) => {
-  //   if (category === 'All') {
-  //     console.log(id)
-  //   }
-  // };
-
   // TO Delete the task from All
   const handleTask = (taskToDelete) => {
     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
@@ -102,7 +92,6 @@ const BodyDetail = ({ category }) => {
   
 
   return (
-    // <GlobalData.Provider value={{category1}}>
     <div className='Body_detail'>
       <div className='sub_Body'>
         {data.map((item, id) => {
@@ -124,7 +113,6 @@ const BodyDetail = ({ category }) => {
       </div>
       {showMessage && <div className='success_message'>{showMessage}</div>}
     </div>
-    // </GlobalData.Provider>
   );
 };
 

@@ -246,3 +246,6 @@
     position: absolute !important;
     left: 0;
 }
+.FlexRow{
+    display: none !important;
+}
