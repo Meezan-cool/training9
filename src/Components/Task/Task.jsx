@@ -63,8 +63,8 @@ const Task = () => {
             setCategoryMessage('');
             setErrorMessage('');
             setSuccessMessage('Task added successfully.');
-            const smallcategory = selectedItem.toLowerCase();
-            navigate(`/${smallcategory}`)
+            // const smallcategory = selectedItem.toLowerCase();
+            // navigate(`/${smallcategory}`)
             const existingTasks = JSON.parse(localStorage.getItem(selectedItem), ('All')) || [];
             const newTask = { task: taskText };
             existingTasks.push(newTask);
