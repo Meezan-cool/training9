@@ -117,7 +117,7 @@ const BodyDetail = ({ category }) => {
             <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
               <div><img src={Blur} alt="" /></div>
               <div className='content' onClick={() => { handleTaskShow(id); handleShow(item, id) }}>
-                {isSelected1 ? item.task : truncateText(item.task, 60)}
+                {isSelected1 ? item.task : truncateText(item.msg, 60)}
               </div>
               <div className='action_buttons'>
                 <div><img src={Check} alt="" onClick={() => handleTaskClick(id)} /></div>

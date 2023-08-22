@@ -241,11 +241,21 @@
     width: 100%;
 } */
 .EmojiPickerReact {
-    height: 100% !important;
+    height: 70% !important;
     width: 100% !important;
     position: absolute !important;
     left: 0;
+    bottom: 0;
 }
 .FlexRow{
     display: none !important;
+}
+.epr-search-container{
+    display: none !important;
+}
+.epr-header .epr-header-overlay{
+ display: block;
+}
+.epr-emoji-category-label{
+    /* opacity: .3 !important; */
 }
