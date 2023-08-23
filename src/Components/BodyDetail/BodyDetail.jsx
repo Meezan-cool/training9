@@ -173,7 +173,7 @@ const BodyDetail = ({ category }) => {
     localStorage.setItem('All', JSON.stringify(sortedCombinedData));
     localStorage.setItem('Category', category);
     setStart(true);
-  }, [start, category]);
+  }, [start, category,data.length]);
 
 
   // Select chat line through
