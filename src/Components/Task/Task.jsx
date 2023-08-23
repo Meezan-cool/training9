@@ -179,6 +179,7 @@ const Task = () => {
     const onEmojiClick = (e) => {
         const sym = e.emoji.split("_");
         setTaskText(taskText + sym);
+        setShowPicker(false)
     }
 
     useEffect(() => {
@@ -228,8 +229,9 @@ const Task = () => {
             addMsg();
             setTaskText('');
             setTimeout(() => {
-                const smallcategory = selectedItem.toLowerCase();
-                navigate(`/${smallcategory}`);
+                // const smallcategory = selectedItem.toLowerCase();
+                // navigate(`/${smallcategory}`);
+                navigate(-1);
                 setSuccessMessage('');
             }, 1000);
         }

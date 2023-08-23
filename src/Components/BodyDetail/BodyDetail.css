@@ -70,6 +70,9 @@ top: 2px;
     line-height: 15px;
     letter-spacing: 0em;
 }
+.linethrough{
+    text-decoration: line-through;
+}
 @media(max-width:360px){
     .map_cont{
         /* width: 310px; */
