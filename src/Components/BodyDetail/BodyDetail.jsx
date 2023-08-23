@@ -130,6 +130,39 @@
 
 // export default BodyDetail;
 
+
+  // Select chat line through
+  //    const handleTaskClick = (id) => {
+  //    const selectedTasksKey = `${category}_select`;
+  //    const updatedSelectedTasks = selectedTasks.includes(id)
+  //      ? selectedTasks.filter(taskId => taskId !== id)
+  //      : [...selectedTasks, id];
+  //    setSelectedTasks(updatedSelectedTasks);
+  //    localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
+  //  };
+  
+
+  // const handleTaskClick = (item,id) => {
+  //   const updatedSelectedTasks = selectedTasks.includes(id)
+  //     ? selectedTasks.filter(taskId => taskId !== id)
+  //     : [...selectedTasks, id];
+  //   setSelectedTasks(updatedSelectedTasks);
+    
+  //   // If the task is clicked in the 'All' category, update selection in other categories
+  //   if (category === 'All') {
+  //     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
+  //     categories.forEach(cat => {
+  //       localStorage.setItem(`${cat}_select`, JSON.stringify(updatedSelectedTasks));
+  //     });
+  //   } else {
+  //     // Update selection in the 'All' category
+  //     localStorage.setItem('All_select', JSON.stringify(updatedSelectedTasks));
+  //   }
+  // };
+
+  
+
+
 import { useState, useEffect } from 'react';
 import "./BodyDetail.css";
 import Blur from '../../Imageslogo/blur 1.svg';
@@ -171,44 +204,16 @@ const BodyDetail = ({ category }) => {
       return acc;
     }, []);
 
-    const sortedCombinedData = combinedData.sort((a, b) => b.id - a.id);
+    const sortedCombinedData = combinedData.sort((a, b) => a.id - b.id);
+
+// const reversedSortedData = sortedCombinedData.reverse();
 
     localStorage.setItem('All', JSON.stringify(sortedCombinedData));
     localStorage.setItem('Category', category);
     setStart(true);
-  }, [start, category,data.length,selectedItem]);
+  }, [start, category,selectedItem]);
 
 
-  // Select chat line through
-  //    const handleTaskClick = (id) => {
-  //    const selectedTasksKey = `${category}_select`;
-  //    const updatedSelectedTasks = selectedTasks.includes(id)
-  //      ? selectedTasks.filter(taskId => taskId !== id)
-  //      : [...selectedTasks, id];
-  //    setSelectedTasks(updatedSelectedTasks);
-  //    localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
-  //  };
-  
-
-  // const handleTaskClick = (item,id) => {
-  //   const updatedSelectedTasks = selectedTasks.includes(id)
-  //     ? selectedTasks.filter(taskId => taskId !== id)
-  //     : [...selectedTasks, id];
-  //   setSelectedTasks(updatedSelectedTasks);
-    
-  //   // If the task is clicked in the 'All' category, update selection in other categories
-  //   if (category === 'All') {
-  //     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
-  //     categories.forEach(cat => {
-  //       localStorage.setItem(`${cat}_select`, JSON.stringify(updatedSelectedTasks));
-  //     });
-  //   } else {
-  //     // Update selection in the 'All' category
-  //     localStorage.setItem('All_select', JSON.stringify(updatedSelectedTasks));
-  //   }
-  // };
-
-  
   
 
   // Delete the selected task
@@ -252,7 +257,10 @@ const BodyDetail = ({ category }) => {
     if (selectedItem.includes(item)) {
       const updatedTasks = selectedItem.filter(selectedTask => selectedTask !== item);
       setSelectedItem(updatedTasks);
-    } else {
+      console.log(updatedTasks)
+    }
+ 
+    else {
       setSelectedItem(prevTasks => [...prevTasks, item]);
     }
   };
