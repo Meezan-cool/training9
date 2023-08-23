@@ -178,7 +178,9 @@ const Task = () => {
     const [imgShower,setImgShower] = useState(false)
 
     const onEmojiClick = (e) => {
+        // const sym1=e;
         const sym = e.emoji.split("_");
+        // console.log(sym1)
         setTaskText(taskText + sym);
         setShowPicker(false)
     }

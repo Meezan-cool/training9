@@ -143,10 +143,13 @@ const BodyDetail = ({ category }) => {
   const [start, setStart] = useState(false);
   const [showMessage, setShowMessage] = useState('');
   const [linetask, setLinetask] = useState(false);
+  const [selectedItem, setSelectedItem] = useState('');
+  const [localStorageTasks, setLocalStorageTasks] = useState([]);
   // const [selectedChatItems, setSelectedChatItems] = useState('');
 
   // useEffect for added data 
   useEffect(() => {
+      
     const localStorageItem = localStorage.getItem(category);
     if (localStorageItem) {
       setData(JSON.parse(localStorageItem));
@@ -173,18 +176,19 @@ const BodyDetail = ({ category }) => {
     localStorage.setItem('All', JSON.stringify(sortedCombinedData));
     localStorage.setItem('Category', category);
     setStart(true);
-  }, [start, category,data.length]);
+  }, [start, category,data.length,selectedItem]);
 
 
   // Select chat line through
-     const handleTaskClick = (id) => {
-     const selectedTasksKey = `${category}_select`;
-     const updatedSelectedTasks = selectedTasks.includes(id)
-       ? selectedTasks.filter(taskId => taskId !== id)
-       : [...selectedTasks, id];
-     setSelectedTasks(updatedSelectedTasks);
-     localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
-   };
+  //    const handleTaskClick = (id) => {
+  //    const selectedTasksKey = `${category}_select`;
+  //    const updatedSelectedTasks = selectedTasks.includes(id)
+  //      ? selectedTasks.filter(taskId => taskId !== id)
+  //      : [...selectedTasks, id];
+  //    setSelectedTasks(updatedSelectedTasks);
+  //    localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
+  //  };
+  
 
   // const handleTaskClick = (item,id) => {
   //   const updatedSelectedTasks = selectedTasks.includes(id)
@@ -243,16 +247,29 @@ const BodyDetail = ({ category }) => {
 
   };
 
-  const handleShow = (item) => {
-    console.log(item)
- 
-  }
 
-  useEffect(() => {
-    const storedSelectedTasksKey = category === 'All' ? 'All_select' : `${category}_select`;
-    const storedSelectedTasks = JSON.parse(localStorage.getItem(storedSelectedTasksKey)) || [];
-    setSelectedTasks(storedSelectedTasks);
-  }, [category]);
+  const handleTaskClick = (item) => {
+    if (selectedItem.includes(item)) {
+      const updatedTasks = selectedItem.filter(selectedTask => selectedTask !== item);
+      setSelectedItem(updatedTasks);
+    } else {
+      setSelectedItem(prevTasks => [...prevTasks, item]);
+    }
+  };
+
+     useEffect(() => {
+      if (selectedItem) {
+        localStorage.setItem('selectedItem', JSON.stringify(selectedItem));
+      }
+    }, [selectedItem]);
+    useEffect(()=>{
+      const storedTasks = localStorage.getItem('selectedItem');
+       
+      if (storedTasks) {
+        setSelectedItem(JSON.parse(storedTasks));
+      }
+    },[])
+
 
   return (
     <div className='Body_detail'>
@@ -261,20 +278,21 @@ const BodyDetail = ({ category }) => {
          {linetask ? (
          <div className='no_data_message'>
            <img src={require('./nodata.png')} alt="" />
-          <div className='nodata_txt'>No data yet.</div>
+          <div className='nodata_txt'>No Data Yet.</div>
          </div>
         ) : (
           data.map((item, id) => {
-            const isSelected = selectedTasks.includes(id);
+            const isSelected = selectedItem.includes(id);
             const isSelected1 = showTasks.includes(id);
             return (
-              <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
+              // <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
+              <div key={id} className={`map_cont`}>
                 <div><img src={Blur} alt="" /></div>
-                <div className={`content `} onClick={() => { handleTaskShow(id); handleShow(item) }}>
+                <div className={`content ${selectedItem.includes(item.id) ? 'selected' : ''}`} onClick={() => { handleTaskShow(id)}}>
                   {isSelected1 ? item.msg : truncateText(item.msg, 60)}
                 </div>
                 <div className='action_buttons'>
-                  <div><img src={Check} alt="" onClick={() => handleTaskClick(id)} /></div>
+                  <div><img src={Check} alt="" onClick={() => handleTaskClick(item.id)} /></div>
                   <div><img src={Delete} alt="" onClick={() => { handleDeleteTask(id); handleTask(item) }} /></div>
                 </div>
               </div>

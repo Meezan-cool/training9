@@ -9,6 +9,7 @@ const CardFooter = () => {
         <div className='plus_cont' onClick={()=>navigate('/task')}>
           <img src={Pluslogo} alt="" />
         </div>
+       
       </div>
   )
 }
