@@ -237,7 +237,7 @@ const Task = () => {
             setTimeout(() => {
                 // const smallcategory = selectedItem.toLowerCase();
                 // navigate(`/${smallcategory}`);
-                navigate(-1);
+                // navigate(-1);
                 setSuccessMessage('');
             }, 1000);
         }
