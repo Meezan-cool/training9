@@ -50,6 +50,7 @@ top: 2px;
 .action_buttons img{
     width: 22px;
     height: 22px;
+    cursor: pointer;
 }
 .selected{
     text-decoration: line-through;
@@ -72,6 +73,15 @@ top: 2px;
 }
 .linethrough{
     text-decoration: line-through;
+}
+.no_data_message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.nodata_txt{
+    
 }
 @media(max-width:360px){
     .map_cont{

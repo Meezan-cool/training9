@@ -19,6 +19,7 @@
     position: absolute;
     top: 11px;
     right: 11px;
+    cursor: pointer;
 }
 .heading{
     color: #FFFFFF;
@@ -240,6 +241,9 @@
     height: 300px;
     width: 100%;
 } */
+.second_input_cont img{
+    cursor: pointer;
+}
 .EmojiPickerReact {
     height: 100% !important;
     width: 100% !important;

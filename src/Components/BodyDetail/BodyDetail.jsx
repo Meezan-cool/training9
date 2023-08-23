@@ -161,7 +161,6 @@ const BodyDetail = ({ category }) => {
       return acc;
     }, []);
 
-    // Sort combinedData in reverse order based on task IDs
     const sortedCombinedData = combinedData.sort((a, b) => b.id - a.id);
 
     localStorage.setItem('All', JSON.stringify(sortedCombinedData));
@@ -171,18 +170,35 @@ const BodyDetail = ({ category }) => {
 
 
   // Select chat line through
-  const handleTaskClick = (id) => {
-    const selectedTasksKey = `${category}_select`;
-    const updatedSelectedTasks = selectedTasks.includes(id)
-      ? selectedTasks.filter(taskId => taskId !== id)
-      : [...selectedTasks, id];
-    setSelectedTasks(updatedSelectedTasks);
-    localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
-  };
-  useEffect(() => {
-    const storedSelectedTasks = JSON.parse(localStorage.getItem(`${category}_select`)) || [];
-    setSelectedTasks(storedSelectedTasks);
-  }, [selectedTasks, category]);
+     const handleTaskClick = (id) => {
+     const selectedTasksKey = `${category}_select`;
+     const updatedSelectedTasks = selectedTasks.includes(id)
+       ? selectedTasks.filter(taskId => taskId !== id)
+       : [...selectedTasks, id];
+     setSelectedTasks(updatedSelectedTasks);
+     localStorage.setItem(selectedTasksKey, JSON.stringify(updatedSelectedTasks));
+   };
+
+  // const handleTaskClick = (item,id) => {
+  //   const updatedSelectedTasks = selectedTasks.includes(id)
+  //     ? selectedTasks.filter(taskId => taskId !== id)
+  //     : [...selectedTasks, id];
+  //   setSelectedTasks(updatedSelectedTasks);
+    
+  //   // If the task is clicked in the 'All' category, update selection in other categories
+  //   if (category === 'All') {
+  //     const categories = ['Work', 'Travel', 'Shopping', 'Home', 'Study'];
+  //     categories.forEach(cat => {
+  //       localStorage.setItem(`${cat}_select`, JSON.stringify(updatedSelectedTasks));
+  //     });
+  //   } else {
+  //     // Update selection in the 'All' category
+  //     localStorage.setItem('All_select', JSON.stringify(updatedSelectedTasks));
+  //   }
+  // };
+
+  
+  
 
   // Delete the selected task
   const handleDeleteTask = (id) => {
@@ -225,16 +241,20 @@ const BodyDetail = ({ category }) => {
  
   }
 
+  useEffect(() => {
+    const storedSelectedTasksKey = category === 'All' ? 'All_select' : `${category}_select`;
+    const storedSelectedTasks = JSON.parse(localStorage.getItem(storedSelectedTasksKey)) || [];
+    setSelectedTasks(storedSelectedTasks);
+  }, [category]);
 
   return (
     <div className='Body_detail'>
       <div className='sub_Body'>
-        {data.map((item, id) => {
+        {/* {data.map((item, id) => {
           const isSelected = selectedTasks.includes(id);
           const isSelected1 = showTasks.includes(id);
           return (
             <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
-            {/* <div key={id} className={`map_cont`}> */}
               <div><img src={Blur} alt="" /></div>
               <div className={`content `} onClick={() => { handleTaskShow(id); handleShow(item) }}>
                 {isSelected1 ? item.msg : truncateText(item.msg, 60)}
@@ -245,7 +265,30 @@ const BodyDetail = ({ category }) => {
               </div>
             </div>
           );
-        })}
+        })} */}
+         {data.length === 0 ? (
+         <div className='no_data_message'>
+           <img src={require('./nodata.png')} alt="" />
+          <div className='nodata_txt'>No data yet.</div>
+         </div>
+        ) : (
+          data.map((item, id) => {
+            const isSelected = selectedTasks.includes(id);
+            const isSelected1 = showTasks.includes(id);
+            return (
+              <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
+                <div><img src={Blur} alt="" /></div>
+                <div className={`content `} onClick={() => { handleTaskShow(id); handleShow(item) }}>
+                  {isSelected1 ? item.msg : truncateText(item.msg, 60)}
+                </div>
+                <div className='action_buttons'>
+                  <div><img src={Check} alt="" onClick={() => handleTaskClick(id)} /></div>
+                  <div><img src={Delete} alt="" onClick={() => { handleDeleteTask(id); handleTask(item) }} /></div>
+                </div>
+              </div>
+            );
+          })
+        )}
       </div>
       {showMessage && <div className='success_message'>{showMessage}</div>}
     </div>

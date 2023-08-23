@@ -175,6 +175,7 @@ const Task = () => {
     const [categoryMessage, setCategoryMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [showPicker, setShowPicker] = useState(false);
+    const [imgShower,setImgShower] = useState(false)
 
     const onEmojiClick = (e) => {
         const sym = e.emoji.split("_");
@@ -186,9 +187,11 @@ const Task = () => {
         const category = localStorage.getItem('Category');
         if (category === 'All') {
             setSelectedItem('');
+            setImgShower(true);
         } else {
             setSelectedItem(category);
             setShowDropdown(false);
+            setImgShower(false);
         }
     }, []);
 
@@ -197,6 +200,7 @@ const Task = () => {
     const openDrop = () => {
         const category = localStorage.getItem('Category');
         setShowDropdown(category === 'All' ? !showDropdown : false);
+        // setImgShower(category === 'All' ? true : false);
     }
 
     const addMsg = () => {
@@ -254,7 +258,9 @@ const Task = () => {
                     <div className='category_task'>Select a category</div>
                     <div className='category_section'>
                         <div className='select1' onClick={openDrop}>
-                            <img src={Downarrrow} alt="Dropdown Arrow" />
+                            {/* <img src={Downarrrow} alt="Dropdown Arrow" /> */}
+                            {imgShower? <img src={Downarrrow} alt="Dropdown Arrow" /> :null}
+                            
                             <div className='selected_item'>{selectedItem}</div>
                         </div>
                         {categoryMessage ? <div className='error_message error_message1'>{categoryMessage}</div> : null}

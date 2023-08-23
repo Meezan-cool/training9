@@ -6,6 +6,7 @@
     left: 13px;
 }
 .return_logo img{
+    cursor: pointer;
     width:34px;
     height:36px;
 }
