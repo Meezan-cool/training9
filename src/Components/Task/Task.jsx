@@ -235,11 +235,13 @@ const Task = () => {
             addMsg();
             setTaskText('');
             setTimeout(() => {
-                // const smallcategory = selectedItem.toLowerCase();
-                // navigate(`/${smallcategory}`);
+                const category = localStorage.getItem('Category');
+                const smallcategory = category.toLowerCase();
+                navigate(`/${smallcategory}`);
                 // navigate(-1);
                 setSuccessMessage('');
             }, 1000);
+          
         }
     };
 
