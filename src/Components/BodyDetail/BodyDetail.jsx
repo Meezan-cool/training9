@@ -143,7 +143,7 @@ const BodyDetail = ({ category }) => {
   const [start, setStart] = useState(false);
   const [showMessage, setShowMessage] = useState('');
   const [linetask, setLinetask] = useState(false);
-  const [selectedChatItems, setSelectedChatItems] = useState('');
+  // const [selectedChatItems, setSelectedChatItems] = useState('');
 
   // useEffect for added data 
   useEffect(() => {
@@ -151,6 +151,13 @@ const BodyDetail = ({ category }) => {
     if (localStorageItem) {
       setData(JSON.parse(localStorageItem));
     }
+   
+     if(data.length===0){
+      setLinetask(true)
+     }
+     else{
+      setLinetask(false)
+     }
 
     const keysToRetrieve = ['Work', 'Study', 'Travel', 'Shopping', 'Home'];
     const combinedData = keysToRetrieve.reduce((acc, key) => {
@@ -250,23 +257,8 @@ const BodyDetail = ({ category }) => {
   return (
     <div className='Body_detail'>
       <div className='sub_Body'>
-        {/* {data.map((item, id) => {
-          const isSelected = selectedTasks.includes(id);
-          const isSelected1 = showTasks.includes(id);
-          return (
-            <div key={id} className={`map_cont ${isSelected ? 'selected' : ''}`}>
-              <div><img src={Blur} alt="" /></div>
-              <div className={`content `} onClick={() => { handleTaskShow(id); handleShow(item) }}>
-                {isSelected1 ? item.msg : truncateText(item.msg, 60)}
-              </div>
-              <div className='action_buttons'>
-                <div><img src={Check} alt="" onClick={() => handleTaskClick(id)} /></div>
-                <div><img src={Delete} alt="" onClick={() => { handleDeleteTask(id); handleTask(item) }} /></div>
-              </div>
-            </div>
-          );
-        })} */}
-         {data.length === 0 ? (
+         {/* {data.length === 0 ? ( */}
+         {linetask ? (
          <div className='no_data_message'>
            <img src={require('./nodata.png')} alt="" />
           <div className='nodata_txt'>No data yet.</div>
