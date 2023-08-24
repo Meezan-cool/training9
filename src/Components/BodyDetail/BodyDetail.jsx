@@ -178,23 +178,19 @@ const BodyDetail = ({ category }) => {
   const [linetask, setLinetask] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
   const [localStorageTasks, setLocalStorageTasks] = useState([]);
-  // const [selectedChatItems, setSelectedChatItems] = useState('');
 
   // useEffect for added data 
   useEffect(() => {
-      
     const localStorageItem = localStorage.getItem(category);
     if (localStorageItem) {
       setData(JSON.parse(localStorageItem));
     }
-   
      if(data.length===0){
       setLinetask(true)
      }
      else{
       setLinetask(false)
      }
-
     const keysToRetrieve = ['Work', 'Study', 'Travel', 'Shopping', 'Home'];
     const combinedData = keysToRetrieve.reduce((acc, key) => {
       const storedData = localStorage.getItem(key);
@@ -203,18 +199,11 @@ const BodyDetail = ({ category }) => {
       }
       return acc;
     }, []);
-
     const sortedCombinedData = combinedData.sort((a, b) => a.id - b.id);
-
-// const reversedSortedData = sortedCombinedData.reverse();
-
     localStorage.setItem('All', JSON.stringify(sortedCombinedData));
     localStorage.setItem('Category', category);
     setStart(true);
   }, [start, category,selectedItem]);
-
-
-  
 
   // Delete the selected task
   const handleDeleteTask = (id) => {
@@ -252,7 +241,7 @@ const BodyDetail = ({ category }) => {
 
   };
 
-
+// Select the tast to change text decoration
   const handleTaskClick = (item) => {
     if (selectedItem.includes(item)) {
       const updatedTasks = selectedItem.filter(selectedTask => selectedTask !== item);
